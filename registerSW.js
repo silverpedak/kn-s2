@@ -1,0 +1,1 @@
+if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/kn-s2/sw.js', { scope: '/kn-s2/' })})}
