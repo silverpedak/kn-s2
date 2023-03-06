@@ -20,9 +20,13 @@ interface WorldMapProps {
 const WorldMapLeafletPanel = ({ setActiveTab, setCenter }: WorldMapProps): JSX.Element => {
   const [category, setCategory] = useState<number>(0);
   const [mapId] = useState<string>("world-map");
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
   const locations = useAppSelector(selectAllLocationData);
 
   const dispatch = useAppDispatch();
+
+  const toggle = () => setIsOpen(!isOpen);
 
   const showOfficeMarker = () => {
     category !== 1 ? setCategory(1) : setCategory(0);
@@ -76,6 +80,8 @@ const WorldMapLeafletPanel = ({ setActiveTab, setCenter }: WorldMapProps): JSX.E
               locations={locations}
               onPopupClick={onPopupClick}
               category={category}
+              isOpen={isOpen}
+              toggle={toggle}
             />
             <ResizeMap mapId={mapId} />
           </MapContainer>
